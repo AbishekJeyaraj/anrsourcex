@@ -274,18 +274,45 @@ button {
     }
 }
 
-.sip-fresh-btn {
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.btn-primary {
     display: inline-block;
     background: #fde047;
     color: #1a1a1a;
     font-weight: 600;
     padding: 0.75rem 1.5rem;
     border-radius: 2rem;
+    text-decoration: none;
     transition: background 0.2s, transform 0.2s;
 }
 
-.sip-fresh-btn:hover {
+.btn-primary:hover {
     background: #facc15;
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    display: inline-block;
+    background: transparent;
+    color: #1f3324;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    border: 1px solid rgba(31, 51, 36, 0.5);
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, transform 0.2s, border-color 0.2s;
+}
+
+.btn-secondary:hover {
+    background: #1f3324;
+    color: #ffffff;
+    border-color: #1f3324;
     transform: scale(1.05);
 }
 
@@ -307,9 +334,18 @@ button {
 }
 
 .hero-content {
-    max-width: 500px;
+    max-width: 580px;
     position: relative;
     z-index: 10;
+}
+
+.hero-eyebrow {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #1f3324;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    display: inline-block;
 }
 
 .hero-content h1 {
@@ -334,6 +370,44 @@ button {
     line-height: 1.6;
 }
 
+.hero-small-text-right {
+    font-size: 0.8rem;
+    color: #3b5c43;
+    opacity: 0.8;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.bottom-right-trust {
+    margin-top: 2rem;
+    text-align: right;
+}
+
+.trust-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 1rem;
+    text-align: right;
+}
+
+.trust-item-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.trust-item-right strong {
+    font-size: 1.25rem;
+    color: #1f3324;
+    font-weight: 800;
+}
+
+.trust-item-right span {
+    font-size: 0.75rem;
+    color: #3b5c43;
+    font-weight: 500;
+}
+
 .hero-content p strong {
     color: #1f3324;
     font-weight: 700;
@@ -354,7 +428,10 @@ button {
     max-height: 70vh;
     object-fit: contain;
     filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15));
+    position: relative;
+    z-index: 2;
 }
+
 
 .hero-stats {
     display: flex;

@@ -93,13 +93,12 @@ export default function Home() {
   const products = [
     { name: "Ponni Rice", category: "RICE", image: "/images/ponni-rice.jpg" },
     { name: "Premium Rice", category: "RICE", image: "/images/basmati-rice.jpg" },
-    { name: "Fresh Mango", category: "FRUITS", image: "/images/mango.jpg" },
+    { name: "Fresh Fruits", category: "FRUITS", image: "/images/apple.jpg" },
     { name: "Fresh Tomato", category: "VEGETABLES", image: "/images/tomato.jpg" },
     { name: "Fresh Vegetables", category: "VEGETABLES", image: "/images/vegetables.jpg" },
     { name: "Premium Cashew", category: "NUTS", image: "/images/cashew.jpg" },
     { name: "Golden Raisins", category: "DRY FRUITS", image: "/images/Golden Raisins jpg.jpeg" },
     { name: "Red Chilli", category: "SPICES", image: "/images/red-chilli.jpg" },
-    { name: "Chilli", category: "SPICES", image: "/images/chilli.jpg" },
     { name: "Turmeric", category: "SPICES", image: "/images/turmeric.jpg" },
     { name: "Coriander", category: "SPICES", image: "/images/coriander.jpg" },
     { name: "Cumin", category: "SPICES", image: "/images/cumin.jpg" },
@@ -149,9 +148,13 @@ export default function Home() {
         <div className="hero-container">
           
           <div className="hero-content">
-            <h1>Savour <i>the pure</i><br /><i>essence</i> of nature in<br />every bite.</h1>
-            <p>Taste nature's best in every <strong>grain</strong> with <strong>real<br />freshness</strong> and vibrant <strong>quality</strong></p>
-            <a href="#" className="sip-fresh-btn">Source Fresh &rarr;</a>
+            <div className="hero-eyebrow">PREMIUM SOURCING PARTNER</div>
+            <h1>Find. Source.<br /><i>Deliver.</i></h1>
+            <p>Quality rice, fresh fruits, vegetables, nuts and spices, carefully sourced, quality-checked and delivered with the reliability your business deserves.</p>
+            <div className="hero-buttons">
+              <a href="#products-section" className="btn-primary">Get a Bulk Quote &rarr;</a>
+              <a href="#products-section" className="btn-secondary">Explore Products</a>
+            </div>
           </div>
 
           <div className="hero-image-wrapper">
@@ -161,13 +164,34 @@ export default function Home() {
           <div className="hero-stats">
             <div className="powered-badge">
               <div className="badge-text">
-                <strong>SOURCEX.</strong>
-                <span>POWERED BY ANR</span>
+                <strong>TRUSTED SOURCING</strong>
               </div>
             </div>
             <div className="percentage-stat">
-              <h2>100%</h2>
-              <p>Natural ingredients<br />sourced directly</p>
+              <h2>98%</h2>
+              <p>On-time bulk delivery, from farm<br />to your destination</p>
+            </div>
+            
+            <div className="bottom-right-trust">
+              <div className="trust-grid">
+                <div className="trust-item-right">
+                  <strong>150+</strong>
+                  <span>Verified suppliers</span>
+                </div>
+                <div className="trust-item-right">
+                  <strong>500+ MT</strong>
+                  <span>Sourced monthly</span>
+                </div>
+                <div className="trust-item-right">
+                  <strong>24hr</strong>
+                  <span>Quote turnaround</span>
+                </div>
+                <div className="trust-item-right">
+                  <strong>12+</strong>
+                  <span>States delivered</span>
+                </div>
+              </div>
+              <p className="hero-small-text-right">Wholesale & export | Retail & bulk | 24/7 support</p>
             </div>
           </div>
 
