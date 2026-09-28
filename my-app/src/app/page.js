@@ -61,7 +61,7 @@ export default function Home() {
   }, []);
 
   const featureImages = [
-    "/images/mango.jpg",
+    "/images/apple.jpg",
     "/images/ponni-rice.jpg",
     "/images/cashew.jpg",
     "/images/turmeric.jpg"
@@ -98,7 +98,7 @@ export default function Home() {
     { name: "Fresh Vegetables", category: "VEGETABLES", image: "/images/vegetables.jpg" },
     { name: "Premium Cashew", category: "NUTS", image: "/images/cashew.jpg" },
     { name: "Golden Raisins", category: "DRY FRUITS", image: "/images/Golden Raisins jpg.jpeg" },
-    { name: "Red Chilli", category: "SPICES", image: "/images/red-chilli.jpg" },
+    { name: "Black Pepper", category: "SPICES", image: "/images/black-pepper.jpg" },
     { name: "Turmeric", category: "SPICES", image: "/images/turmeric.jpg" },
     { name: "Coriander", category: "SPICES", image: "/images/coriander.jpg" },
     { name: "Cumin", category: "SPICES", image: "/images/cumin.jpg" },
@@ -390,17 +390,17 @@ export default function Home() {
           <div className="marquee-content">
             <div className="social-item"><img src="/images/tomato.jpg" alt="Social 1" /></div>
             <div className="social-item"><img src="/images/cashew.jpg" alt="Social 2" /></div>
-            <div className="social-item"><img src="/images/red-chilli.jpg" alt="Social 3" /></div>
+            <div className="social-item"><img src="/images/black-pepper.jpg" alt="Social 3" /></div>
             <div className="social-item"><img src="/images/vegetables.jpg" alt="Social 4" /></div>
             <div className="social-item"><img src="/images/spices.jpg" alt="Social 5" /></div>
-            <div className="social-item"><img src="/images/mango.jpg" alt="Social 6" /></div>
+            <div className="social-item"><img src="/images/apple.jpg" alt="Social 6" /></div>
             {/* Duplicate for infinite marquee effect */}
             <div className="social-item"><img src="/images/tomato.jpg" alt="Social 1" /></div>
             <div className="social-item"><img src="/images/cashew.jpg" alt="Social 2" /></div>
-            <div className="social-item"><img src="/images/red-chilli.jpg" alt="Social 3" /></div>
+            <div className="social-item"><img src="/images/black-pepper.jpg" alt="Social 3" /></div>
             <div className="social-item"><img src="/images/vegetables.jpg" alt="Social 4" /></div>
             <div className="social-item"><img src="/images/spices.jpg" alt="Social 5" /></div>
-            <div className="social-item"><img src="/images/mango.jpg" alt="Social 6" /></div>
+            <div className="social-item"><img src="/images/apple.jpg" alt="Social 6" /></div>
           </div>
         </div>
       </section>

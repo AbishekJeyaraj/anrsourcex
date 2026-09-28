@@ -461,7 +461,7 @@ button {
     height: 60px;
     background: #ffccbc;
     border-radius: 50%;
-    background-image: url('/images/mango.jpg'); /* placeholder */
+    background-image: url('/images/apple.jpg'); /* placeholder */
     background-size: cover;
 }
 
