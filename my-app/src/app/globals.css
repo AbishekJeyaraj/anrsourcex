@@ -281,6 +281,10 @@ button {
     align-items: center;
 }
 
+.mobile-hero-buttons {
+    display: none;
+}
+
 .btn-primary {
     display: inline-block;
     background: #fde047;
@@ -1647,17 +1651,64 @@ button {
 }
 
 @media (max-width: 768px) {
+    .hero-container {
+        padding: 3rem 1.5rem 2rem;
+        gap: 1.5rem;
+        min-height: auto;
+        overflow: hidden;
+    }
     .interactive-image-wrapper {
         aspect-ratio: 1 / 1;
     }
+    .hero-image-wrapper {
+        position: absolute;
+        bottom: -5%;
+        right: -30%;
+        width: 150%;
+        opacity: 0.15;
+        z-index: 0;
+        pointer-events: none;
+        top: auto;
+        left: auto;
+        transform: none;
+    }
+    .hero-content {
+        z-index: 10;
+        position: relative;
+    }
     .hero-content h1 {
-        font-size: 2.5rem;
+        font-size: 3rem;
     }
     .hero-content p {
-        font-size: 1rem;
+        display: none;
+    }
+    .desktop-hero-buttons {
+        display: none;
+    }
+    .mobile-hero-buttons {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 0.75rem;
+        margin-top: 1rem;
+    }
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+    }
+    .hero-stats {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        z-index: 10;
+        position: relative;
+    }
+    .bottom-right-trust {
+        display: none;
     }
     .percentage-stat h2, .indulge-right h2 {
-        font-size: 3.5rem;
+        font-size: 3rem;
     }
     .products-header h2, .feature-text h2, .indulge-left h2, .social-header h2, .reviews-container h2, .modal-title, .benefits-title {
         font-size: 2.2rem;

@@ -151,7 +151,7 @@ export default function Home() {
             <div className="hero-eyebrow">PREMIUM SOURCING PARTNER</div>
             <h1>Find. Source.<br /><i>Deliver.</i></h1>
             <p>Quality rice, fresh fruits, vegetables, nuts and spices, carefully sourced, quality-checked and delivered with the reliability your business deserves.</p>
-            <div className="hero-buttons">
+            <div className="hero-buttons desktop-hero-buttons">
               <a href="#products-section" className="btn-primary">Get a Bulk Quote &rarr;</a>
               <a href="#products-section" className="btn-secondary">Explore Products</a>
             </div>
@@ -170,6 +170,11 @@ export default function Home() {
             <div className="percentage-stat">
               <h2>98%</h2>
               <p>On-time bulk delivery, from farm<br />to your destination</p>
+            </div>
+            
+            <div className="hero-buttons mobile-hero-buttons">
+              <a href="#products-section" className="btn-primary">Get a Bulk Quote &rarr;</a>
+              <a href="#products-section" className="btn-secondary">Explore Products</a>
             </div>
             
             <div className="bottom-right-trust">
