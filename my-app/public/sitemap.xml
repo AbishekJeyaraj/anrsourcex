@@ -1,9 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://anrsourcex.vercel.app/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://anrsourcex.vercel.app/images/hero-food.png.png</image:loc>
+      <image:title>ANR Sourcex — Premium Sourcing Partner</image:title>
+      <image:caption>ANR Sourcex premium sourcing of rice, spices, fruits, vegetables and nuts from India</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://anrsourcex.vercel.app/images/anr_logo.jpg</image:loc>
+      <image:title>ANR Sourcex Logo</image:title>
+      <image:caption>ANR Sourcex official company logo</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://anrsourcex.vercel.app/images/ponni-rice.jpg</image:loc>
+      <image:title>Premium Ponni Rice</image:title>
+      <image:caption>Premium Ponni Rice supplied by ANR Sourcex</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://anrsourcex.vercel.app/images/basmati-rice.jpg</image:loc>
+      <image:title>Premium Basmati Rice</image:title>
+      <image:caption>Premium Basmati Rice wholesale from ANR Sourcex</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://anrsourcex.vercel.app/images/cashew.jpg</image:loc>
+      <image:title>Premium Cashews</image:title>
+      <image:caption>Premium quality cashews from ANR Sourcex wholesale</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://anrsourcex.vercel.app/images/turmeric.jpg</image:loc>
+      <image:title>Premium Turmeric</image:title>
+      <image:caption>Fresh turmeric supplied by ANR Sourcex</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://anrsourcex.vercel.app/images/spices.jpg</image:loc>
+      <image:title>Premium Indian Spices</image:title>
+      <image:caption>Premium Indian spices from ANR Sourcex wholesale</image:caption>
+    </image:image>
   </url>
 </urlset>

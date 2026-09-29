@@ -1,4 +1,25 @@
+# ANR Sourcex - Robots.txt
+# https://anrsourcex.vercel.app
+
 User-agent: *
 Allow: /
+Allow: /images/
 
+# Disallow non-content paths
+Disallow: /_next/static/
+Disallow: /api/
+
+# Sitemaps
 Sitemap: https://anrsourcex.vercel.app/sitemap.xml
+
+# Crawl-delay (be friendly to crawlers)
+Crawl-delay: 1
+
+# Google specific
+User-agent: Googlebot
+Allow: /
+Allow: /images/
+Disallow: /_next/static/
+
+User-agent: Googlebot-Image
+Allow: /images/
