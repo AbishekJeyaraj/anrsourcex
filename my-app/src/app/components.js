@@ -139,27 +139,39 @@ export function NavbarClient({ children }) {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [statusFeedback, setStatusFeedback] = useState("");
 
-  const handleWhatsApp = () => {
+  const handleWhatsApp = (e) => {
+    if (e) e.preventDefault();
     setStatusFeedback("Connecting to WhatsApp...");
+    const url = "https://wa.me/918825453262?text=Hello%20ANR%20Sourcex%2C%20I%20am%20interested%20in%20bulk%20produce%20sourcing.";
+    const isMobile = typeof navigator !== 'undefined' && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+      window.location.href = url;
+    } else {
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
     setTimeout(() => {
       setIsContactModalOpen(false);
       setStatusFeedback("");
     }, 1200);
   };
 
-  const handleCall = () => {
-    setStatusFeedback("Dialing +91 8825453262 (Copied to clipboard)...");
-    if (typeof navigator !== "undefined" && navigator.clipboard) {
-      navigator.clipboard.writeText("+918825453262").catch(() => {});
-    }
+  const handleCall = (e) => {
+    setStatusFeedback("Dialing +91 8825453262...");
+    try {
+      if (typeof navigator !== "undefined" && navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText("+918825453262").catch(() => {});
+      }
+    } catch (err) {}
+    window.location.href = "tel:+918825453262";
     setTimeout(() => {
       setIsContactModalOpen(false);
       setStatusFeedback("");
-    }, 1500);
+    }, 1200);
   };
 
-  const handleEmail = () => {
+  const handleEmail = (e) => {
     setStatusFeedback("Opening Email client...");
+    window.location.href = "mailto:anrsourcex@gmail.com";
     setTimeout(() => {
       setIsContactModalOpen(false);
       setStatusFeedback("");
@@ -167,36 +179,38 @@ export function NavbarClient({ children }) {
   };
 
   return (
-    <div className="navbar-wrapper">
-      <header className="floating-navbar">
-        <a href="/" className="nav-logo" title="ANR Sourcex — Premium Sourcing Partner">
-          <img src="/images/anr_logo.jpg" alt="ANR Sourcex Logo" />
-          <span>ANR SOURCEX.</span>
-        </a>
+    <>
+      <div className="navbar-wrapper">
+        <header className="floating-navbar">
+          <a href="/" className="nav-logo" title="ANR Sourcex — Premium Sourcing Partner">
+            <img src="/images/anr_logo.jpg" alt="ANR Sourcex Logo" />
+            <span>ANR SOURCEX.</span>
+          </a>
 
-        <MobileMenuButton isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
+          <MobileMenuButton isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
 
-        <div className={`nav-links-container ${isMobileMenuOpen ? 'open' : ''}`}>
-          <nav className="pill-nav-links" aria-label="Main navigation">
-            <a href="#products-section" onClick={() => setIsMobileMenuOpen(false)}>Categories</a>
-            <a href="#about-section" onClick={() => setIsMobileMenuOpen(false)}>About Us</a>
-            <a href="#quality-section" onClick={() => setIsMobileMenuOpen(false)}>Quality</a>
-          </nav>
+          <div className={`nav-links-container ${isMobileMenuOpen ? 'open' : ''}`}>
+            <nav className="pill-nav-links" aria-label="Main navigation">
+              <a href="#products-section" onClick={() => setIsMobileMenuOpen(false)}>Categories</a>
+              <a href="#about-section" onClick={() => setIsMobileMenuOpen(false)}>About Us</a>
+              <a href="#quality-section" onClick={() => setIsMobileMenuOpen(false)}>Quality</a>
+            </nav>
 
-          <button 
-            type="button" 
-            className="nav-contact-btn"
-            onClick={() => {
-              setIsContactModalOpen(true);
-              setIsMobileMenuOpen(false);
-            }}
-          >
-            Contact Us
-          </button>
-        </div>
-      </header>
+            <button 
+              type="button" 
+              className="nav-contact-btn"
+              onClick={() => {
+                setIsContactModalOpen(true);
+                setIsMobileMenuOpen(false);
+              }}
+            >
+              Contact Us
+            </button>
+          </div>
+        </header>
+      </div>
 
-      {/* CONTACT REDIRECTION MODAL (CALL OR WHATSAPP) */}
+      {/* CONTACT REDIRECTION MODAL (CALL OR WHATSAPP) - Rendered as root portal sibling */}
       {isContactModalOpen && (
         <div className="contact-modal-overlay" onClick={() => setIsContactModalOpen(false)}>
           <div className="contact-modal-card" onClick={(e) => e.stopPropagation()}>
@@ -280,7 +294,7 @@ export function NavbarClient({ children }) {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
 

@@ -3276,8 +3276,9 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 10001;
+    z-index: 99999;
     padding: 1rem;
+    pointer-events: auto !important;
     animation: contactFadeIn 0.25s ease forwards;
 }
 
@@ -3290,6 +3291,7 @@ button {
     position: relative;
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(0, 0, 0, 0.08);
+    pointer-events: auto !important;
     animation: contactModalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -3305,6 +3307,7 @@ button {
     border: none;
     font-size: 0.95rem;
     cursor: pointer;
+    pointer-events: auto !important;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3346,6 +3349,7 @@ button {
     display: flex;
     flex-direction: column;
     gap: 0.85rem;
+    pointer-events: auto !important;
 }
 
 .contact-status-feedback {
@@ -3371,8 +3375,13 @@ button {
     transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s, border-color 0.2s;
     border: 1.5px solid transparent;
     cursor: pointer;
+    pointer-events: auto !important;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
+}
+
+.contact-opt-card * {
+    pointer-events: none;
 }
 
 .contact-opt-card.whatsapp {
