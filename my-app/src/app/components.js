@@ -137,6 +137,34 @@ export function MobileMenuButton({ isMobileMenuOpen, setIsMobileMenuOpen }) {
 export function NavbarClient({ children }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [statusFeedback, setStatusFeedback] = useState("");
+
+  const handleWhatsApp = () => {
+    setStatusFeedback("Connecting to WhatsApp...");
+    setTimeout(() => {
+      setIsContactModalOpen(false);
+      setStatusFeedback("");
+    }, 1200);
+  };
+
+  const handleCall = () => {
+    setStatusFeedback("Dialing +91 8825453262 (Copied to clipboard)...");
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard.writeText("+918825453262").catch(() => {});
+    }
+    setTimeout(() => {
+      setIsContactModalOpen(false);
+      setStatusFeedback("");
+    }, 1500);
+  };
+
+  const handleEmail = () => {
+    setStatusFeedback("Opening Email client...");
+    setTimeout(() => {
+      setIsContactModalOpen(false);
+      setStatusFeedback("");
+    }, 1200);
+  };
 
   return (
     <div className="navbar-wrapper">
@@ -185,6 +213,12 @@ export function NavbarClient({ children }) {
               <p>Connect directly with our procurement team for wholesale quotes and availability:</p>
             </div>
 
+            {statusFeedback && (
+              <div className="contact-status-feedback">
+                <span>✓ {statusFeedback}</span>
+              </div>
+            )}
+
             <div className="contact-modal-options">
               {/* WhatsApp Option */}
               <a 
@@ -192,7 +226,7 @@ export function NavbarClient({ children }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contact-opt-card whatsapp"
-                onClick={() => setIsContactModalOpen(false)}
+                onClick={handleWhatsApp}
               >
                 <div className="contact-opt-icon whatsapp">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -210,7 +244,7 @@ export function NavbarClient({ children }) {
               <a 
                 href="tel:+918825453262"
                 className="contact-opt-card phone"
-                onClick={() => setIsContactModalOpen(false)}
+                onClick={handleCall}
               >
                 <div className="contact-opt-icon phone">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
@@ -228,7 +262,7 @@ export function NavbarClient({ children }) {
               <a 
                 href="mailto:anrsourcex@gmail.com"
                 className="contact-opt-card email"
-                onClick={() => setIsContactModalOpen(false)}
+                onClick={handleEmail}
               >
                 <div className="contact-opt-icon email">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

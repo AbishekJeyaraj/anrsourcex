@@ -3348,6 +3348,19 @@ button {
     gap: 0.85rem;
 }
 
+.contact-status-feedback {
+    background: #e7faea;
+    color: #1f3324;
+    padding: 0.65rem 1rem;
+    border-radius: 0.85rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(37, 211, 102, 0.35);
+    animation: contactFadeIn 0.2s ease;
+}
+
 .contact-opt-card {
     display: flex;
     align-items: center;
@@ -3357,6 +3370,9 @@ button {
     text-decoration: none;
     transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s, border-color 0.2s;
     border: 1.5px solid transparent;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .contact-opt-card.whatsapp {
