@@ -44,11 +44,16 @@ export function ProductFilter({ products }) {
               <h3>{product.name}</h3>
               <p>Premium Sourced</p>
               <a
-                href={`https://wa.me/918825453262?text=Hi, I am interested in ${product.name}`}
+                href={`https://wa.me/918825453262?text=${encodeURIComponent(`Hi, I am interested in ${product.name}`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="product-enquire-btn"
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                onTouchEnd={(e) => {
+                  e.stopPropagation();
+                }}
               >
                 Enquire Now &rarr;
               </a>
@@ -98,7 +103,12 @@ export function ProductFilter({ products }) {
                 </div>
               </div>
 
-              <a href={`https://wa.me/8825453262?text=I am interested in ${selectedProduct.name}`} target="_blank" rel="noopener noreferrer" className="modal-whatsapp-btn">
+              <a 
+                href={`https://wa.me/918825453262?text=${encodeURIComponent(`Hi, I am interested in ${selectedProduct.name}`)}`} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="modal-whatsapp-btn"
+              >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style={{ flexShrink: 0 }}>
                   <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
                 </svg>
@@ -431,3 +441,403 @@ export function InstagramReels() {
     </section>
   );
 }
+
+/* =========================================================
+   ANR SOURCEX CHATBOT COMPONENT
+========================================================= */
+export function ChatBot() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(1);
+  const [showTooltip, setShowTooltip] = useState(true);
+  const [input, setInput] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
+  const messagesEndRef = useRef(null);
+
+  const initialMessages = [
+    {
+      id: 1,
+      sender: "bot",
+      text: "👋 **Hello! Welcome to ANR Sourcex.**\n\nI am your 24/7 sourcing assistant. Whether you need wholesale quotes for rice, fresh gooseberry, spices, or nuts, I'm here to help.",
+      time: "Just now",
+      actions: [
+        { label: "🌾 Rice Varieties", query: "Tell me about Rice varieties" },
+        { label: "🍋 Fresh Gooseberry", query: "Details on Fresh Gooseberry" },
+        { label: "🌶️ Premium Spices", query: "What spices do you supply?" },
+        { label: "📦 Get Bulk Quote", query: "How do I get a bulk quote?" },
+        { label: "🚚 Shipping & Delivery", query: "Where do you deliver?" },
+        { label: "💬 Chat on WhatsApp", url: "https://wa.me/918825453262?text=Hello%20ANR%20Sourcex%2C%20I%20have%20an%20inquiry%20regarding%20bulk%20produce%20sourcing." }
+      ]
+    }
+  ];
+
+  const [messages, setMessages] = useState(initialMessages);
+
+  // Auto-scroll when new message appears
+  useEffect(() => {
+    if (isOpen) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages, isTyping, isOpen]);
+
+  // Open chat and clear badge
+  const toggleChat = () => {
+    if (!isOpen) {
+      setUnreadCount(0);
+      setShowTooltip(false);
+    }
+    setIsOpen(!isOpen);
+  };
+
+  const getKnowledgeResponse = (userText) => {
+    const q = userText.toLowerCase().trim();
+
+    if (q.includes("rice") || q.includes("ponni") || q.includes("basmati")) {
+      return {
+        text: "🌾 **ANR Sourcex Rice Portfolio:**\n\n• **Ponni Rice:** Single boiled, double boiled, and raw varieties, aged for ideal fluffiness.\n• **Basmati Rice:** Aged 1121 and traditional aromatic long-grain Basmati.\n• **Sona Masoori & Broken Rice:** Available for catering and bulk trade.\n• **Packaging:** 25kg, 50kg, and 100kg HDPE bags, plus export-ready containers.",
+        actions: [
+          { label: "📦 Instant WhatsApp Rice Quote", url: `https://wa.me/918825453262?text=${encodeURIComponent("Hi ANR Sourcex, please share current pricing for Ponni and Basmati Rice bulk supply.")}` },
+          { label: "🍋 Ask about Gooseberry", query: "Tell me about Fresh Gooseberry" }
+        ]
+      };
+    }
+
+    if (q.includes("gooseberry") || q.includes("amla") || q.includes("nellikai")) {
+      return {
+        text: "🍋 **Fresh Indian Gooseberry (Amla):**\n\n• **Grade-A Quality:** Plump, handpicked fresh amla rich in natural Vitamin C and antioxidants.\n• **Direct Farm Sourcing:** Harvested daily from certified orchards with zero chemical ripening.\n• **Bulk Packaging:** Ventilated 10kg/25kg corrugated boxes and wooden crates for maximum freshness during transit.\n• Available for wholesale food processing, Ayurveda, and retail distribution.",
+        actions: [
+          { label: "💬 Order Gooseberry on WhatsApp", url: `https://wa.me/918825453262?text=${encodeURIComponent("Hi ANR Sourcex, I am interested in placing an order for Fresh Gooseberry (Amla).")}` },
+          { label: "📦 Request Minimum Order Quantity", query: "What is your MOQ?" }
+        ]
+      };
+    }
+
+    if (q.includes("fruit") || q.includes("mango") || q.includes("apple")) {
+      return {
+        text: "🍎 **Fresh Fruit Sourcing:**\n\n• **Alphonso & Seasonal Mangoes:** Naturally ripened, export-certified sweetness.\n• **Fresh Apples:** Crisp, cold-stored Grade-A produce.\n• **Fresh Gooseberry:** Farm-fresh daily batches.\n\nWe provide refrigerated cold-chain transit to guarantee freshness.",
+        actions: [
+          { label: "💬 Enquire on WhatsApp", url: `https://wa.me/918825453262?text=${encodeURIComponent("Hi ANR Sourcex, please share fruit rates and availability.")}` }
+        ]
+      };
+    }
+
+    if (q.includes("vegetable") || q.includes("tomato") || q.includes("onion") || q.includes("potato")) {
+      return {
+        text: "🥦 **Fresh Vegetables:**\n\n• Daily harvested fresh tomatoes, onions, potatoes, and seasonal farm vegetables.\n• Strict grading for size, color, and shelf-life.\n• Minimum order quantity starting from 100kg up to full container loads.",
+        actions: [
+          { label: "📦 Request Vegetable Price List", url: `https://wa.me/918825453262?text=${encodeURIComponent("Hi ANR Sourcex, I would like to receive the vegetable price list.")}` }
+        ]
+      };
+    }
+
+    if (q.includes("spice") || q.includes("pepper") || q.includes("turmeric") || q.includes("cumin") || q.includes("coriander") || q.includes("masala")) {
+      return {
+        text: "🌶️ **Premium Spices Collection:**\n\n• **Salem Turmeric:** High curcumin percentage, vibrant golden color, and potent aroma.\n• **Malabar Black Pepper:** High bulk density (GL 550+), intense heat, and high essential oil content.\n• **Cumin & Coriander:** Machine-cleaned 99% purity seeds.\n• Export-ready and wholesale bulk packaging available.",
+        actions: [
+          { label: "🌶️ Bulk Spices WhatsApp Quote", url: `https://wa.me/918825453262?text=${encodeURIComponent("Hi ANR Sourcex, please send price quotes for Turmeric, Black Pepper, and Spices.")}` }
+        ]
+      };
+    }
+
+    if (q.includes("cashew") || q.includes("nut") || q.includes("raisin") || q.includes("dry fruit") || q.includes("badam") || q.includes("almond")) {
+      return {
+        text: "🥜 **Nuts & Dry Fruits:**\n\n• **Cashews:** Premium W180 (King size), W240, and W320 whole white kernels, vacuum packed.\n• **Golden Raisins:** Sun-dried, naturally sweet and uniform size.\n• **Almonds:** Quality California and Mamra grades for retail and food manufacturing.",
+        actions: [
+          { label: "🥜 Get Nuts & Dry Fruits Quote", url: `https://wa.me/918825453262?text=${encodeURIComponent("Hi ANR Sourcex, please share Cashew and Dry Fruits quotation.")}` }
+        ]
+      };
+    }
+
+    if (q.includes("quote") || q.includes("price") || q.includes("rate") || q.includes("cost") || q.includes("buy") || q.includes("order")) {
+      return {
+        text: "💼 **Bulk Quotations:**\n\nBecause agricultural prices fluctuate based on daily mandis and harvest volume, we provide personalized quotes within 24 hours.\n\n**Please let us know:**\n1. Product & Grade required\n2. Estimated Quantity (MT / kg)\n3. Delivery Destination City\n\nClick below to connect instantly with our procurement manager!",
+        actions: [
+          { label: "⚡ Get Quote on WhatsApp", url: `https://wa.me/918825453262?text=${encodeURIComponent("Hello ANR Sourcex, I would like to request an instant price quotation for bulk order.")}` },
+          { label: "📞 Call +91 8825453262", url: "tel:+918825453262" }
+        ]
+      };
+    }
+
+    if (q.includes("delivery") || q.includes("shipping") || q.includes("transport") || q.includes("logistics") || q.includes("export") || q.includes("where") || q.includes("city") || q.includes("state")) {
+      return {
+        text: "🚚 **Logistics & Delivery Reach:**\n\n• **Domestic:** Fast, reliable road & rail network serving **12+ states** across India.\n• **Export Ready:** Full documentation, phytosanitary certificates, and port clearance (Nhava Sheva, Chennai, Tuticorin ports).\n• **Timeline:** 24–48hr turnaround for domestic dispatch.",
+        actions: [
+          { label: "💬 Check Delivery to Your City", url: `https://wa.me/918825453262?text=${encodeURIComponent("Hi ANR Sourcex, I want to check shipping availability and timeline for my location.")}` }
+        ]
+      };
+    }
+
+    if (q.includes("moq") || q.includes("minimum")) {
+      return {
+        text: "📦 **Minimum Order Quantity (MOQ):**\n\n• **Rice:** Minimum 1 Ton (1,000 kg) up to multiple container loads.\n• **Gooseberry & Fruits:** 100 kg to 5 MT.\n• **Spices & Nuts:** 50 kg to 1 MT.\n• **Sample Orders:** Smaller trial samples can be arranged for verified businesses.",
+        actions: [
+          { label: "💬 Request Trial Samples", url: `https://wa.me/918825453262?text=${encodeURIComponent("Hi ANR Sourcex, can I request a sample order before placing bulk MOQ?")}` }
+        ]
+      };
+    }
+
+    if (q.includes("contact") || q.includes("phone") || q.includes("email") || q.includes("address") || q.includes("whatsapp") || q.includes("number")) {
+      return {
+        text: "📞 **Contact ANR Sourcex:**\n\n• **WhatsApp / Mobile:** +91 8825453262\n• **Email:** anrsourcex@gmail.com\n• **Instagram:** @anr_sourcex\n• **Website:** anrsourcex.vercel.app\n• **Operating Hours:** 24/7 Procurement Inquiries",
+        actions: [
+          { label: "💬 WhatsApp Us Directly", url: "https://wa.me/918825453262" },
+          { label: "✉️ Send Email", url: "mailto:anrsourcex@gmail.com" }
+        ]
+      };
+    }
+
+    if (q.includes("hello") || q.includes("hi") || q.includes("hey") || q.includes("vanakkam") || q.includes("namaste")) {
+      return {
+        text: "Hello! 😊 Welcome to ANR Sourcex. How can we assist your business today? You can ask about our rice varieties, fresh gooseberry, spices, or get an immediate bulk quote.",
+        actions: [
+          { label: "🌾 Rice Varieties", query: "Tell me about Rice varieties" },
+          { label: "🍋 Fresh Gooseberry", query: "Details on Fresh Gooseberry" },
+          { label: "📦 Get Bulk Quote", query: "How do I get a bulk quote?" }
+        ]
+      };
+    }
+
+    // Default Fallback
+    return {
+      text: "Thank you for reaching out! Since we deal in bulk agricultural commodities, our procurement team can answer custom requests with exact pricing and inventory numbers.",
+      actions: [
+        { label: "💬 Chat Directly on WhatsApp", url: `https://wa.me/918825453262?text=${encodeURIComponent(`Hi ANR Sourcex, I have an inquiry from your website assistant: "${userText}"`)}` },
+        { label: "📞 Call +91 8825453262", url: "tel:+918825453262" }
+      ]
+    };
+  };
+
+  const handleSend = (textToSend) => {
+    const messageText = (textToSend || input).trim();
+    if (!messageText) return;
+
+    const userMsg = {
+      id: Date.now(),
+      sender: "user",
+      text: messageText,
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    };
+
+    setMessages((prev) => [...prev, userMsg]);
+    setInput("");
+    setIsTyping(true);
+
+    // Realistic typing delay
+    setTimeout(() => {
+      const botResponse = getKnowledgeResponse(messageText);
+      const botMsg = {
+        id: Date.now() + 1,
+        sender: "bot",
+        text: botResponse.text,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        actions: botResponse.actions
+      };
+      setMessages((prev) => [...prev, botMsg]);
+      setIsTyping(false);
+    }, 600);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  };
+
+  const handleResetChat = () => {
+    setMessages(initialMessages);
+  };
+
+  return (
+    <div className="chatbot-root" aria-label="ANR Sourcex Virtual Assistant">
+      {/* Floating Prompt Tooltip */}
+      {showTooltip && !isOpen && (
+        <div className="chatbot-tooltip">
+          <div className="tooltip-text">
+            <strong>Need produce or bulk rates?</strong>
+            <span>Chat with our sourcing assistant 👋</span>
+          </div>
+          <button className="tooltip-close" onClick={() => setShowTooltip(false)} aria-label="Dismiss message">✕</button>
+        </div>
+      )}
+
+      {/* Launcher Button */}
+      <button 
+        className={`chatbot-launcher ${isOpen ? 'open' : ''}`}
+        onClick={toggleChat}
+        aria-label={isOpen ? "Close chatbot" : "Open ANR Sourcex chatbot"}
+      >
+        {isOpen ? (
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        ) : (
+          <>
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              <circle cx="9" cy="10" r="1" fill="currentColor"></circle>
+              <circle cx="12" cy="10" r="1" fill="currentColor"></circle>
+              <circle cx="15" cy="10" r="1" fill="currentColor"></circle>
+            </svg>
+            {unreadCount > 0 && <span className="chatbot-badge">{unreadCount}</span>}
+          </>
+        )}
+      </button>
+
+      {/* Chat Window */}
+      {isOpen && (
+        <div className="chatbot-window" role="dialog" aria-modal="true" aria-label="ANR Sourcex Live Chat">
+          {/* Header */}
+          <div className="chatbot-header">
+            <div className="chatbot-header-info">
+              <div className="chatbot-avatar-wrap">
+                <img src="/images/anr_logo.jpg" alt="ANR Logo" className="chatbot-avatar" />
+                <span className="chatbot-online-indicator"></span>
+              </div>
+              <div className="chatbot-title-box">
+                <div className="chatbot-title">
+                  ANR Sourcing AI
+                  <span className="chatbot-verified" title="Verified Assistant">✓</span>
+                </div>
+                <div className="chatbot-subtitle">Online • Fast responses</div>
+              </div>
+            </div>
+
+            <div className="chatbot-header-actions">
+              <a
+                href="https://wa.me/918825453262?text=Hi%20ANR%20Sourcex%2C%20I%20would%20like%20to%20speak%20with%20a%20sales%20representative."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="chatbot-header-btn whatsapp"
+                title="Switch to WhatsApp"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                </svg>
+              </a>
+              <button className="chatbot-header-btn" onClick={handleResetChat} title="Reset Chat">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="23 4 23 10 17 10"></polyline>
+                  <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                </svg>
+              </button>
+              <button className="chatbot-header-btn close" onClick={toggleChat} title="Close Chat">
+                ✕
+              </button>
+            </div>
+          </div>
+
+          {/* Messages Body */}
+          <div className="chatbot-body">
+            {messages.map((msg) => (
+              <div key={msg.id} className={`chatbot-msg-row ${msg.sender}`}>
+                {msg.sender === "bot" && (
+                  <div className="chatbot-msg-avatar">
+                    <img src="/images/anr_logo.jpg" alt="ANR" />
+                  </div>
+                )}
+                <div className="chatbot-bubble-wrap">
+                  <div className={`chatbot-bubble ${msg.sender}`}>
+                    <div className="chatbot-bubble-text" style={{ whiteSpace: "pre-line" }}>
+                      {msg.text.split("\n").map((line, i) => {
+                        // Render bold markdown
+                        if (line.includes("**")) {
+                          const parts = line.split("**");
+                          return (
+                            <p key={i}>
+                              {parts.map((p, idx) => (idx % 2 === 1 ? <strong key={idx}>{p}</strong> : p))}
+                            </p>
+                          );
+                        }
+                        return <p key={i}>{line}</p>;
+                      })}
+                    </div>
+                    <span className="chatbot-msg-time">{msg.time}</span>
+                  </div>
+
+                  {/* Action Chips */}
+                  {msg.actions && msg.actions.length > 0 && (
+                    <div className="chatbot-actions-row">
+                      {msg.actions.map((act, actIdx) => (
+                        act.url ? (
+                          <a
+                            key={actIdx}
+                            href={act.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="chatbot-action-chip link"
+                          >
+                            {act.label} &rarr;
+                          </a>
+                        ) : (
+                          <button
+                            key={actIdx}
+                            onClick={() => handleSend(act.query || act.label)}
+                            className="chatbot-action-chip btn"
+                          >
+                            {act.label}
+                          </button>
+                        )
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+
+            {/* Typing indicator */}
+            {isTyping && (
+              <div className="chatbot-msg-row bot">
+                <div className="chatbot-msg-avatar">
+                  <img src="/images/anr_logo.jpg" alt="ANR" />
+                </div>
+                <div className="chatbot-typing-bubble">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+
+          {/* Quick Starter Pills (Always visible at bottom when few messages) */}
+          <div className="chatbot-quick-pills">
+            <button onClick={() => handleSend("Tell me about Rice varieties")} className="quick-pill">🌾 Rice</button>
+            <button onClick={() => handleSend("Details on Fresh Gooseberry")} className="quick-pill">🍋 Gooseberry</button>
+            <button onClick={() => handleSend("What spices do you supply?")} className="quick-pill">🌶️ Spices</button>
+            <button onClick={() => handleSend("How do I get a bulk quote?")} className="quick-pill">📦 Bulk Quote</button>
+          </div>
+
+          {/* Footer Input */}
+          <div className="chatbot-footer">
+            <textarea
+              className="chatbot-input"
+              placeholder="Ask about rice, gooseberry, spices, quotes..."
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              rows={1}
+            />
+            <button 
+              className="chatbot-send-btn" 
+              onClick={() => handleSend()}
+              disabled={!input.trim()}
+              aria-label="Send message"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
+
+          <div className="chatbot-credits">
+            <span>Powered by ANR Sourcex • 24/7 Sourcing</span>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+

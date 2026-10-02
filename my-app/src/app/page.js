@@ -1,9 +1,10 @@
-import { NavbarClient, ProductFilter, AboutRevealSection, FeatureSlideshow, IndulgeSlideshow, ReviewsSlider, InstagramReels } from './components';
+import { NavbarClient, ProductFilter, AboutRevealSection, FeatureSlideshow, IndulgeSlideshow, ReviewsSlider, InstagramReels, ChatBot } from './components';
 
 // Products data — defined at server level so Google can see it
 const products = [
   { name: "Ponni Rice", category: "RICE", image: "/images/ponni-rice.jpg" },
   { name: "Premium Rice", category: "RICE", image: "/images/basmati-rice.jpg" },
+  { name: "Fresh Gooseberry", category: "FRUITS", image: "/images/gooseberry.jpeg" },
   { name: "Fresh Fruits", category: "FRUITS", image: "/images/apple.jpg" },
   { name: "Fresh Tomato", category: "VEGETABLES", image: "/images/tomato.jpg" },
   { name: "Fresh Vegetables", category: "VEGETABLES", image: "/images/vegetables.jpg" },
@@ -146,7 +147,7 @@ export default function Home() {
           <div className="indulge-left">
             <h2>Indulge in <i>the fresh</i><br /><i>taste</i> of nature</h2>
             <p>Our produce is selected to energize your business and satisfy your customers.</p>
-            <a href="mailto:anrsourcex@gmail.com" className="shop-now-btn">Enquire Now &rarr;</a>
+            <a href="https://wa.me/918825453262?text=Hi%2C%20I%20am%20interested%20in%20enquiring%20about%20bulk%20produce%20sourcing." target="_blank" rel="noopener noreferrer" className="shop-now-btn">Enquire Now &rarr;</a>
           </div>
           <IndulgeSlideshow />
           <div className="indulge-right">
@@ -278,8 +279,11 @@ export default function Home() {
       {/* SEO: Hidden but crawlable content for search engines — reinforces brand identity */}
       <div className="sr-only" aria-hidden="true">
         <h2>ANR Sourcex — anrsourcex</h2>
-        <p>ANR Sourcex (anrsourcex) is a premium sourcing partner based in India. We specialize in wholesale and bulk sourcing of quality rice (ponni rice, basmati rice), fresh fruits (alphonso mango, apple), vegetables (tomato, mixed vegetables), spices (turmeric, black pepper, coriander, cumin), nuts (premium cashew), and dry fruits (golden raisins). Visit ANR Sourcex at anrsourcex.vercel.app for wholesale quotes and bulk orders. Contact ANR Sourcex via WhatsApp at +91-8825453262 or email at anrsourcex@gmail.com.</p>
+        <p>ANR Sourcex (anrsourcex) is a premium sourcing partner based in India. We specialize in wholesale and bulk sourcing of quality rice (ponni rice, basmati rice), fresh fruits (gooseberry / amla, alphonso mango, apple), vegetables (tomato, mixed vegetables), spices (turmeric, black pepper, coriander, cumin), nuts (premium cashew), and dry fruits (golden raisins). Visit ANR Sourcex at anrsourcex.vercel.app for wholesale quotes and bulk orders. Contact ANR Sourcex via WhatsApp at +91-8825453262 or email at anrsourcex@gmail.com.</p>
       </div>
+
+      {/* 24/7 Virtual Assistant ChatBot */}
+      <ChatBot />
     </main>
   );
 }
