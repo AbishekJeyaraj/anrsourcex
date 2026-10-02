@@ -1,4 +1,4 @@
-import { NavbarClient, ProductFilter, AboutRevealSection, FeatureSlideshow, IndulgeSlideshow, ReviewsSlider } from './components';
+import { NavbarClient, ProductFilter, AboutRevealSection, FeatureSlideshow, IndulgeSlideshow, ReviewsSlider, InstagramReels } from './components';
 
 // Products data — defined at server level so Google can see it
 const products = [
@@ -201,6 +201,8 @@ export default function Home() {
           <ReviewsSlider />
         </div>
       </section>
+      {/* INSTAGRAM REELS — Embedded reels from @anr_sourcex */}
+      <InstagramReels />
 
       {/* FOOTER — All server rendered, great for SEO */}
       <footer className="modern-footer" role="contentinfo">

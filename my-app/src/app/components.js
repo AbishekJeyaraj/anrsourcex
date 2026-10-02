@@ -43,6 +43,15 @@ export function ProductFilter({ products }) {
               <span className="product-category-text">{product.category}</span>
               <h3>{product.name}</h3>
               <p>Premium Sourced</p>
+              <a
+                href={`https://wa.me/918825453262?text=Hi, I am interested in ${product.name}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="product-enquire-btn"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Enquire Now &rarr;
+              </a>
             </div>
           </div>
         ))}
@@ -52,7 +61,7 @@ export function ProductFilter({ products }) {
       {selectedProduct && (
         <div className="modal-overlay" onClick={() => setSelectedProduct(null)}>
           <div className="modal-content-dribbble" onClick={e => e.stopPropagation()}>
-            <button className="modal-close-btn" onClick={() => setSelectedProduct(null)}>✕</button>
+            <button className="modal-close-btn" onClick={() => setSelectedProduct(null)} aria-label="Close modal">✕</button>
             <div className="modal-left">
               <img src={selectedProduct.image} alt={selectedProduct.name} />
             </div>
@@ -89,7 +98,10 @@ export function ProductFilter({ products }) {
                 </div>
               </div>
 
-              <a href={`https://wa.me/8825453262?text=I am interested in ${selectedProduct.name}`} target="_blank" className="modal-whatsapp-btn">
+              <a href={`https://wa.me/8825453262?text=I am interested in ${selectedProduct.name}`} target="_blank" rel="noopener noreferrer" className="modal-whatsapp-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style={{ flexShrink: 0 }}>
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                </svg>
                 Enquire on WhatsApp
               </a>
             </div>
@@ -324,5 +336,98 @@ export function ReviewsSlider() {
         <button className="nav-btn next" onClick={scrollNext}>&gt;</button>
       </div>
     </>
+  );
+}
+
+export function InstagramReels() {
+  const scrollRef = useRef(null);
+
+  // All Instagram reels from @anr_sourcex
+  const reels = [
+    { id: 'reel1', url: 'https://www.instagram.com/reel/Dd86-6Ihjt2/' },
+    { id: 'reel2', url: 'https://www.instagram.com/reel/Dd6UkO1y5r7/' },
+    { id: 'reel3', url: 'https://www.instagram.com/reel/DdqumBgBr18/' },
+    { id: 'reel4', url: 'https://www.instagram.com/reel/DdgAJY1BKpH/' },
+    { id: 'reel5', url: 'https://www.instagram.com/reel/DdWUhvBBK7t/' },
+    { id: 'reel6', url: 'https://www.instagram.com/reel/DdLwbqMCI8K/' },
+    { id: 'reel7', url: 'https://www.instagram.com/p/DdCHSkyAYRr/' },
+    { id: 'reel8', url: 'https://www.instagram.com/reel/Dc554Boh3o_/' },
+    { id: 'reel9', url: 'https://www.instagram.com/reel/Dcp8NGuhih6/' },
+    { id: 'reel10', url: 'https://www.instagram.com/reel/DcRMCwahlHE/' },
+    { id: 'reel11', url: 'https://www.instagram.com/reel/DcGyWsVh1Wi/' },
+  ];
+
+  // Convert Instagram URL to embed URL (no captions, just the video)
+  const getEmbedUrl = (url) => {
+    const cleanUrl = url.endsWith('/') ? url.slice(0, -1) : url;
+    return cleanUrl + '/embed/?cr=0&hidecaption=true';
+  };
+
+  const scrollLeft = () => {
+    if (scrollRef.current) scrollRef.current.scrollBy({ left: -340, behavior: 'smooth' });
+  };
+  const scrollRight = () => {
+    if (scrollRef.current) scrollRef.current.scrollBy({ left: 340, behavior: 'smooth' });
+  };
+
+  return (
+    <section className="ig-reels-section" aria-label="ANR Sourcex Instagram Reels">
+      <div className="ig-reels-container">
+        {/* Header */}
+        <div className="ig-reels-header">
+          <div className="ig-reels-header-left">
+            <div className="ig-reels-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </div>
+            <div>
+              <h2>Watch our <i>Reels</i></h2>
+              <p>Explore our sourcing journey on Instagram</p>
+            </div>
+          </div>
+          <div className="ig-reels-header-right">
+            <a href="https://www.instagram.com/anr_sourcex" target="_blank" rel="noopener noreferrer" className="ig-reels-follow-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+              Follow @anr_sourcex
+            </a>
+            <div className="ig-reels-nav-arrows">
+              <button className="ig-nav-arrow" onClick={scrollLeft} aria-label="Scroll left">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+              <button className="ig-nav-arrow" onClick={scrollRight} aria-label="Scroll right">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Reels Carousel */}
+        <div className="ig-reels-carousel" ref={scrollRef}>
+          {reels.map((reel, idx) => (
+            <div className="ig-reel-phone-card" key={reel.id}>
+              {/* Actual video iframe — scaled to crop out IG UI and show only video */}
+              <div className="ig-reel-iframe-wrap">
+                <iframe
+                  src={getEmbedUrl(reel.url)}
+                  className="ig-reel-iframe"
+                  frameBorder="0"
+                  scrolling="no"
+                  allow="encrypted-media"
+                  title={`ANR Sourcex Instagram Reel ${idx + 1}`}
+                  loading={idx < 4 ? "eager" : "lazy"}
+                ></iframe>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
