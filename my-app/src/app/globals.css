@@ -3264,3 +3264,204 @@ button {
     }
 }
 
+/* =========================================================
+   CONTACT OPTIONS MODAL (CALL OR WHATSAPP)
+========================================================= */
+.contact-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10001;
+    padding: 1rem;
+    animation: contactFadeIn 0.25s ease forwards;
+}
+
+.contact-modal-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 440px;
+    border-radius: 1.75rem;
+    padding: 2.2rem 1.8rem 1.8rem;
+    position: relative;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    animation: contactModalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.contact-modal-close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #f0f2f0;
+    color: #555;
+    border: none;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.contact-modal-close:hover {
+    background: #e2e8e2;
+    color: #1a1a1a;
+    transform: scale(1.05);
+}
+
+.contact-modal-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #2a4531;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.35rem;
+}
+
+.contact-modal-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 0.4rem 0;
+}
+
+.contact-modal-header p {
+    font-size: 0.88rem;
+    color: #666;
+    margin: 0 0 1.5rem 0;
+    line-height: 1.45;
+}
+
+.contact-modal-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.contact-opt-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.15rem;
+    border-radius: 1.25rem;
+    text-decoration: none;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s, border-color 0.2s;
+    border: 1.5px solid transparent;
+}
+
+.contact-opt-card.whatsapp {
+    background: linear-gradient(135deg, #f0fdf4 0%, #e7faea 100%);
+    border-color: rgba(37, 211, 102, 0.3);
+}
+
+.contact-opt-card.whatsapp:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(37, 211, 102, 0.2);
+    border-color: #25d366;
+}
+
+.contact-opt-card.phone {
+    background: linear-gradient(135deg, #f4f8f5 0%, #e9f2eb 100%);
+    border-color: rgba(31, 51, 36, 0.25);
+}
+
+.contact-opt-card.phone:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(31, 51, 36, 0.18);
+    border-color: #1f3324;
+}
+
+.contact-opt-card.email {
+    background: #fafbfa;
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+.contact-opt-card.email:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    border-color: #888;
+}
+
+.contact-opt-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.contact-opt-icon.whatsapp {
+    background: #25d366;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+}
+
+.contact-opt-icon.phone {
+    background: #1f3324;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(31, 51, 36, 0.3);
+}
+
+.contact-opt-icon.email {
+    background: #4a5568;
+    color: #ffffff;
+}
+
+.contact-opt-text strong {
+    display: block;
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.25;
+}
+
+.contact-opt-text span {
+    display: block;
+    font-size: 0.78rem;
+    color: #666;
+    margin-top: 0.2rem;
+    line-height: 1.35;
+}
+
+.contact-opt-arrow {
+    margin-left: auto;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #888;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.contact-opt-card:hover .contact-opt-arrow {
+    transform: translateX(3px);
+    color: #1a1a1a;
+}
+
+@keyframes contactFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes contactModalPop {
+    from {
+        opacity: 0;
+        transform: scale(0.92) translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+

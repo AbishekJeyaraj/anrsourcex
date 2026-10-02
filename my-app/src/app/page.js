@@ -243,12 +243,12 @@ export default function Home() {
             </div>
 
             <div className="footer-col">
-              <h4>Support</h4>
+              <h4>Support & Contact</h4>
               <ul>
-                <li><a href="mailto:anrsourcex@gmail.com">Contact Us</a></li>
-                <li><a href="https://wa.me/918825453262" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+                <li><a href="https://wa.me/918825453262?text=Hello%20ANR%20Sourcex%2C%20I%20have%20an%20inquiry." target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></li>
+                <li><a href="tel:+918825453262">Call +91 8825453262</a></li>
+                <li><a href="mailto:anrsourcex@gmail.com">Email Us</a></li>
                 <li><a href="https://www.instagram.com/anr_sourcex" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-                <li><a href="#products-section">Get a Quote</a></li>
               </ul>
             </div>
 
@@ -270,7 +270,8 @@ export default function Home() {
               <a href="#about-section">About</a>
               <a href="#products-section">Products</a>
               <a href="#quality-section">Quality</a>
-              <a href="mailto:anrsourcex@gmail.com">Contact</a>
+              <a href="https://wa.me/918825453262" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+              <a href="tel:+918825453262">Call Us</a>
             </div>
           </div>
         </div>
