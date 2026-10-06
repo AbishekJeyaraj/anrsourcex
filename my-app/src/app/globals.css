@@ -3524,78 +3524,150 @@ button {
 .contact-modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(8, 14, 10, 0.72);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 99999;
-    padding: 1rem;
+    padding: 1.25rem;
     pointer-events: auto !important;
-    animation: contactFadeIn 0.25s ease forwards;
+    animation: contactOverlayFade 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes contactOverlayFade {
+    from { opacity: 0; backdrop-filter: blur(0px); }
+    to { opacity: 1; backdrop-filter: blur(12px); }
 }
 
 .contact-modal-card {
     background: #ffffff;
     width: 100%;
     max-width: 440px;
-    border-radius: 1.75rem;
-    padding: 2.2rem 1.8rem 1.8rem;
+    border-radius: 2rem;
+    padding: 2.25rem 1.85rem 1.85rem;
     position: relative;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 
+        0 25px 60px -10px rgba(0, 0, 0, 0.35),
+        0 0 40px rgba(37, 211, 102, 0.12),
+        0 0 50px rgba(217, 119, 6, 0.1),
+        0 0 0 1px rgba(0, 0, 0, 0.06);
     pointer-events: auto !important;
-    animation: contactModalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: contactModalPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    overflow: hidden;
+}
+
+/* Subtle iridescent ambient top bar */
+.contact-modal-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #25d366 0%, #f59e0b 50%, #6366f1 100%);
+    background-size: 200% 100%;
+    animation: auraBarShimmer 4s ease infinite;
+}
+
+@keyframes auraBarShimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .contact-modal-close {
     position: absolute;
     top: 1.25rem;
     right: 1.25rem;
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    background: #f0f2f0;
-    color: #555;
-    border: none;
-    font-size: 0.95rem;
+    background: #f1f4f1;
+    color: #444;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    font-size: 1rem;
     cursor: pointer;
     pointer-events: auto !important;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .contact-modal-close:hover {
-    background: #e2e8e2;
-    color: #1a1a1a;
-    transform: scale(1.05);
+    background: #1a1a1a;
+    color: #ffffff;
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.contact-modal-eyebrow {
+/* Header & Live Status Badge */
+.contact-modal-header {
+    animation: contactFadeIn 0.3s ease 0.05s backwards;
+}
+
+.contact-modal-eyebrow-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    background: rgba(37, 211, 102, 0.12);
+    border: 1px solid rgba(37, 211, 102, 0.35);
+    border-radius: 2rem;
     font-size: 0.72rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: #2a4531;
     font-weight: 700;
-    display: block;
-    margin-bottom: 0.35rem;
+    letter-spacing: 1.2px;
+    color: #15803d;
+    margin-bottom: 0.75rem;
+    width: fit-content;
+}
+
+.live-status-dot {
+    position: relative;
+    display: inline-flex;
+    width: 8px;
+    height: 8px;
+}
+
+.live-status-ping {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background-color: #22c55e;
+    animation: pingDot 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.live-status-core {
+    position: relative;
+    display: inline-flex;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    background-color: #16a34a;
+}
+
+@keyframes pingDot {
+    75%, 100% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
 }
 
 .contact-modal-header h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.65rem;
+    font-size: 1.75rem;
     font-weight: 700;
-    color: #1a1a1a;
-    margin: 0 0 0.4rem 0;
+    color: #111827;
+    margin: 0 0 0.35rem 0;
+    line-height: 1.2;
 }
 
 .contact-modal-header p {
     font-size: 0.88rem;
-    color: #666;
-    margin: 0 0 1.5rem 0;
+    color: #555e58;
+    margin: 0 0 1.4rem 0;
     line-height: 1.45;
 }
 
@@ -3608,72 +3680,198 @@ button {
 
 .contact-status-feedback {
     background: #e7faea;
-    color: #1f3324;
+    color: #15803d;
     padding: 0.65rem 1rem;
     border-radius: 0.85rem;
     font-size: 0.82rem;
     font-weight: 600;
     text-align: center;
     margin-bottom: 1rem;
-    border: 1px solid rgba(37, 211, 102, 0.35);
+    border: 1px solid rgba(37, 211, 102, 0.4);
     animation: contactFadeIn 0.2s ease;
 }
 
+/* Staggered Card Animation & Interactive Base */
 .contact-opt-card {
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 1rem 1.15rem;
-    border-radius: 1.25rem;
+    padding: 1.05rem 1.25rem;
+    border-radius: 1.35rem;
     text-decoration: none;
-    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s, border-color 0.2s;
     border: 1.5px solid transparent;
     cursor: pointer;
     pointer-events: auto !important;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
+    position: relative;
+    overflow: hidden;
+    transition: 
+        transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+        box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+        border-color 0.25s ease,
+        background 0.25s ease;
 }
 
 .contact-opt-card * {
     pointer-events: none;
 }
 
+/* Shimmer light sweep on hover */
+.contact-opt-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.6),
+        transparent
+    );
+    transform: skewX(-22deg);
+    pointer-events: none;
+}
+
+.contact-opt-card:hover::after {
+    left: 150%;
+    transition: left 0.65s ease-in-out;
+}
+
+/* Staggered entry */
+.contact-opt-card:nth-child(1) {
+    animation: cardStaggerUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.08s backwards;
+}
+.contact-opt-card:nth-child(2) {
+    animation: cardStaggerUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.16s backwards;
+}
+.contact-opt-card:nth-child(3) {
+    animation: cardStaggerUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.24s backwards;
+}
+
+@keyframes cardStaggerUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Tactile Active / Tap State */
+.contact-opt-card:active {
+    transform: scale(0.97) !important;
+}
+
+/* 1. WHATSAPP CARD - Vibrant Emerald Glow */
 .contact-opt-card.whatsapp {
-    background: linear-gradient(135deg, #f0fdf4 0%, #e7faea 100%);
-    border-color: rgba(37, 211, 102, 0.3);
+    background: linear-gradient(135deg, #f0fdf4 0%, #e8f9ed 100%);
+    border-color: rgba(37, 211, 102, 0.35);
 }
 
 .contact-opt-card.whatsapp:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(37, 211, 102, 0.2);
-    border-color: #25d366;
+    background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+    transform: translateY(-3px) scale(1.015);
+    box-shadow: 
+        0 14px 28px -4px rgba(37, 211, 102, 0.32),
+        0 4px 12px rgba(37, 211, 102, 0.18);
+    border-color: #22c55e;
 }
 
+.contact-opt-icon.whatsapp {
+    background: #25d366;
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+}
+
+.contact-opt-card.whatsapp:hover .contact-opt-icon.whatsapp {
+    transform: scale(1.12) rotate(-8deg);
+    box-shadow: 0 6px 18px rgba(37, 211, 102, 0.55);
+}
+
+.contact-opt-card.whatsapp:hover .contact-opt-arrow {
+    transform: translateX(6px);
+    color: #15803d;
+}
+
+/* 2. CALL CARD - Warm Golden / Amber Glow */
 .contact-opt-card.phone {
-    background: linear-gradient(135deg, #f4f8f5 0%, #e9f2eb 100%);
-    border-color: rgba(31, 51, 36, 0.25);
+    background: linear-gradient(135deg, #fefce8 0%, #fef3c7 70%, #fffbeb 100%);
+    border-color: rgba(217, 119, 6, 0.3);
 }
 
 .contact-opt-card.phone:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(31, 51, 36, 0.18);
-    border-color: #1f3324;
+    background: linear-gradient(135deg, #fef08a 0%, #fde68a 100%);
+    transform: translateY(-3px) scale(1.015);
+    box-shadow: 
+        0 14px 28px -4px rgba(217, 119, 6, 0.3),
+        0 4px 12px rgba(217, 119, 6, 0.18);
+    border-color: #d97706;
 }
 
+.contact-opt-icon.phone {
+    background: #d97706;
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(217, 119, 6, 0.38);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+}
+
+.contact-opt-card.phone:hover .contact-opt-icon.phone {
+    animation: phoneWiggle 0.45s ease-in-out infinite alternate;
+    box-shadow: 0 6px 18px rgba(217, 119, 6, 0.55);
+}
+
+@keyframes phoneWiggle {
+    0% { transform: scale(1.1) rotate(-9deg); }
+    100% { transform: scale(1.1) rotate(9deg); }
+}
+
+.contact-opt-card.phone:hover .contact-opt-arrow {
+    transform: translateX(6px);
+    color: #b45309;
+}
+
+/* 3. EMAIL CARD - Royal Indigo / Azure Glow */
 .contact-opt-card.email {
-    background: #fafbfa;
-    border-color: rgba(0, 0, 0, 0.08);
+    background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+    border-color: rgba(99, 102, 241, 0.3);
 }
 
 .contact-opt-card.email:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
-    border-color: #888;
+    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+    transform: translateY(-3px) scale(1.015);
+    box-shadow: 
+        0 14px 28px -4px rgba(99, 102, 241, 0.3),
+        0 4px 12px rgba(99, 102, 241, 0.18);
+    border-color: #6366f1;
 }
 
+.contact-opt-icon.email {
+    background: #4f46e5;
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.38);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+}
+
+.contact-opt-card.email:hover .contact-opt-icon.email {
+    transform: scale(1.12) translateY(-2px);
+    box-shadow: 0 6px 18px rgba(79, 70, 229, 0.55);
+}
+
+.contact-opt-card.email:hover .contact-opt-arrow {
+    transform: translateX(6px);
+    color: #4338ca;
+}
+
+/* Icons & Content */
 .contact-opt-icon {
-    width: 44px;
-    height: 44px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -3681,67 +3879,46 @@ button {
     flex-shrink: 0;
 }
 
-.contact-opt-icon.whatsapp {
-    background: #25d366;
-    color: #ffffff;
-    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
-}
-
-.contact-opt-icon.phone {
-    background: #1f3324;
-    color: #ffffff;
-    box-shadow: 0 4px 12px rgba(31, 51, 36, 0.3);
-}
-
-.contact-opt-icon.email {
-    background: #4a5568;
-    color: #ffffff;
-}
-
 .contact-opt-text strong {
     display: block;
-    font-size: 0.98rem;
+    font-size: 1rem;
     font-weight: 700;
-    color: #1a1a1a;
+    color: #111827;
     line-height: 1.25;
 }
 
 .contact-opt-text span {
     display: block;
     font-size: 0.78rem;
-    color: #666;
+    color: #555e58;
     margin-top: 0.2rem;
     line-height: 1.35;
 }
 
 .contact-opt-arrow {
     margin-left: auto;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     font-weight: 700;
-    color: #888;
-    transition: transform 0.2s, color 0.2s;
-}
-
-.contact-opt-card:hover .contact-opt-arrow {
-    transform: translateX(3px);
-    color: #1a1a1a;
+    color: #9ca3af;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
 }
 
 @keyframes contactFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes contactModalPop {
-    from {
+    0% {
         opacity: 0;
-        transform: scale(0.92) translateY(12px);
+        transform: scale(0.88) translateY(24px);
     }
-    to {
+    100% {
         opacity: 1;
         transform: scale(1) translateY(0);
     }
 }
+
 
 /* ==========================================================================
    FAQ SECTION (SEO & USER TRUST)

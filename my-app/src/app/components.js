@@ -150,6 +150,17 @@ export function NavbarClient({ children }) {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [statusFeedback, setStatusFeedback] = useState("");
 
+  useEffect(() => {
+    if (isContactModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isContactModalOpen]);
+
   const handleWhatsApp = (e) => {
     if (e) e.preventDefault();
     setStatusFeedback("Connecting to WhatsApp...");
@@ -233,7 +244,13 @@ export function NavbarClient({ children }) {
               ✕
             </button>
             <div className="contact-modal-header">
-              <span className="contact-modal-eyebrow">GET IN TOUCH</span>
+              <div className="contact-modal-eyebrow-badge">
+                <span className="live-status-dot">
+                  <span className="live-status-ping"></span>
+                  <span className="live-status-core"></span>
+                </span>
+                <span>GET IN TOUCH • 24/7 ACTIVE</span>
+              </div>
               <h3>Contact ANR Sourcex</h3>
               <p>Connect directly with our procurement team for wholesale quotes and availability:</p>
             </div>
