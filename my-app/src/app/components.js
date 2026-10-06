@@ -13,6 +13,17 @@ export function ProductFilter({ products }) {
     return true;
   });
 
+  useEffect(() => {
+    if (selectedProduct) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [selectedProduct]);
+
   return (
     <>
       <div className="products-header">
