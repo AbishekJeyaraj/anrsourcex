@@ -180,6 +180,70 @@ const jsonLdLocalBusiness = {
   },
 };
 
+const jsonLdFAQ = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What products does ANR Sourcex supply in wholesale and bulk?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "ANR Sourcex supplies premium Ponni rice, Basmati rice, fresh fruits (apples, gooseberries), farm vegetables (tomatoes, mixed vegetables), nuts (cashews, almonds), dry fruits (golden raisins), and whole spices (turmeric, black pepper, coriander, cumin) wholesale across India.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How can businesses request a wholesale or bulk quote?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "You can request a bulk quote instantly by contacting ANR Sourcex directly via WhatsApp at +91 8825453262 or emailing anrsourcex@gmail.com. We provide guaranteed quote turnarounds within 24 hours.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Which states in India does ANR Sourcex deliver to?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "ANR Sourcex delivers across 12+ states in India directly from farm sources and verified producers, maintaining a 98% on-time delivery track record.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Are ANR Sourcex agricultural produce export-grade?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes, all products undergo rigorous quality control, grading, and batch verification to comply with high standards for domestic retail, wholesale distribution, and export requirements.",
+      },
+    },
+  ],
+};
+
+const jsonLdBreadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://anrsourcex.vercel.app",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Products",
+      item: "https://anrsourcex.vercel.app/#products-section",
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Quality Sourcing",
+      item: "https://anrsourcex.vercel.app/#quality-section",
+    },
+  ],
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -201,6 +265,18 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(jsonLdLocalBusiness),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLdFAQ),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLdBreadcrumb),
           }}
         />
 

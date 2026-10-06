@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://anrsourcex.vercel.app/</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -19,7 +19,7 @@
     <image:image>
       <image:loc>https://anrsourcex.vercel.app/images/ponni-rice.jpg</image:loc>
       <image:title>Premium Ponni Rice</image:title>
-      <image:caption>Premium Ponni Rice supplied by ANR Sourcex</image:caption>
+      <image:caption>Premium Ponni Rice supplied wholesale by ANR Sourcex</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://anrsourcex.vercel.app/images/basmati-rice.jpg</image:loc>
@@ -34,12 +34,42 @@
     <image:image>
       <image:loc>https://anrsourcex.vercel.app/images/turmeric.jpg</image:loc>
       <image:title>Premium Turmeric</image:title>
-      <image:caption>Fresh turmeric supplied by ANR Sourcex</image:caption>
+      <image:caption>Fresh turmeric supplied by ANR Sourcex wholesale</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://anrsourcex.vercel.app/images/spices.jpg</image:loc>
       <image:title>Premium Indian Spices</image:title>
       <image:caption>Premium Indian spices from ANR Sourcex wholesale</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://anrsourcex.vercel.app/images/black-pepper.jpg</image:loc>
+      <image:title>Black Pepper Wholesale</image:title>
+      <image:caption>Premium black pepper bulk supply by ANR Sourcex</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://anrsourcex.vercel.app/images/coriander.jpg</image:loc>
+      <image:title>Coriander Seeds Wholesale</image:title>
+      <image:caption>Farm fresh coriander seeds sourced by ANR Sourcex</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://anrsourcex.vercel.app/images/cumin.jpg</image:loc>
+      <image:title>Cumin Seeds Bulk Supply</image:title>
+      <image:caption>Pure cumin seeds wholesale by ANR Sourcex</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://anrsourcex.vercel.app/images/tomato.jpg</image:loc>
+      <image:title>Fresh Tomatoes Wholesale</image:title>
+      <image:caption>Fresh farm tomatoes supplied wholesale by ANR Sourcex</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://anrsourcex.vercel.app/images/apple.jpg</image:loc>
+      <image:title>Fresh Fruits Wholesale</image:title>
+      <image:caption>Fresh fruits export and bulk supply by ANR Sourcex</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://anrsourcex.vercel.app/images/vegetables.jpg</image:loc>
+      <image:title>Fresh Vegetables Bulk</image:title>
+      <image:caption>Fresh vegetables farm-to-business delivery by ANR Sourcex</image:caption>
     </image:image>
   </url>
 </urlset>

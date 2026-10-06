@@ -1,4 +1,4 @@
-import { NavbarClient, ProductFilter, AboutRevealSection, FeatureSlideshow, IndulgeSlideshow, ReviewsSlider, InstagramReels, ChatBot } from './components';
+import { NavbarClient, ProductFilter, AboutRevealSection, FeatureSlideshow, IndulgeSlideshow, ReviewsSlider, InstagramReels, FaqSection, ChatBot } from './components';
 
 // Products data — defined at server level so Google can see it
 const products = [
@@ -205,6 +205,9 @@ export default function Home() {
       {/* INSTAGRAM REELS — Embedded reels from @anr_sourcex */}
       <InstagramReels />
 
+      {/* FREQUENTLY ASKED QUESTIONS — Structured FAQ for Google SEO & User Trust */}
+      <FaqSection />
+
       {/* FOOTER — All server rendered, great for SEO */}
       <footer className="modern-footer" role="contentinfo">
         <div className="footer-container">
@@ -228,6 +231,7 @@ export default function Home() {
                 <li><a href="#about-section">About ANR Sourcex</a></li>
                 <li><a href="#quality-section">Our Services</a></li>
                 <li><a href="#products-section">Our Products</a></li>
+                <li><a href="#faq-section">FAQs</a></li>
                 <li><a href="#reviews-section">Testimonials</a></li>
               </ul>
             </div>
@@ -270,18 +274,13 @@ export default function Home() {
               <a href="#about-section">About</a>
               <a href="#products-section">Products</a>
               <a href="#quality-section">Quality</a>
+              <a href="#faq-section">FAQs</a>
               <a href="https://wa.me/918825453262" target="_blank" rel="noopener noreferrer">WhatsApp</a>
               <a href="tel:+918825453262">Call Us</a>
             </div>
           </div>
         </div>
       </footer>
-
-      {/* SEO: Hidden but crawlable content for search engines — reinforces brand identity */}
-      <div className="sr-only" aria-hidden="true">
-        <h2>ANR Sourcex — anrsourcex</h2>
-        <p>ANR Sourcex (anrsourcex) is a premium sourcing partner based in India. We specialize in wholesale and bulk sourcing of quality rice (ponni rice, basmati rice), fresh fruits (gooseberry / amla, alphonso mango, apple), vegetables (tomato, mixed vegetables), spices (turmeric, black pepper, coriander, cumin), nuts (premium cashew), and dry fruits (golden raisins). Visit ANR Sourcex at anrsourcex.vercel.app for wholesale quotes and bulk orders. Contact ANR Sourcex via WhatsApp at +91-8825453262 or email at anrsourcex@gmail.com.</p>
-      </div>
 
       {/* 24/7 Virtual Assistant ChatBot */}
       <ChatBot />

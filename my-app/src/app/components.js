@@ -978,3 +978,69 @@ export function ChatBot() {
   );
 }
 
+export function FaqSection() {
+  const [openIdx, setOpenIdx] = useState(0);
+
+  const faqs = [
+    {
+      q: "What products does ANR Sourcex supply wholesale and in bulk?",
+      a: "ANR Sourcex supplies farm-sourced Ponni Rice, Basmati Rice, fresh fruits (Amla / Gooseberry, Apples), fresh farm vegetables (Tomatoes, mixed vegetables), premium Cashews, Golden Raisins, and pure spices (Turmeric, Black Pepper, Coriander seeds, and Cumin seeds) with verified origin and batch certification.",
+    },
+    {
+      q: "How can businesses get a custom bulk quote or order produce?",
+      a: "You can request a competitive bulk quote directly via our WhatsApp (+91 8825453262) or email (anrsourcex@gmail.com). Share your required tonnage, destination, and specifications. Our sourcing team provides comprehensive quotes within 24 hours.",
+    },
+    {
+      q: "Which states and cities in India does ANR Sourcex deliver to?",
+      a: "We deliver across 12+ states in India directly from origin farms and regional procurement hubs, maintaining an industry-leading 98% on-time delivery record for restaurants, retail chains, food processors, and wholesalers.",
+    },
+    {
+      q: "Can I order sample batches before committing to bulk volume?",
+      a: "Yes! We encourage clients to inspect and test our quality firsthand. We provide sample packs and trial consignments across our rice varieties, spices, nuts, and fresh produce upon request.",
+    },
+    {
+      q: "Are ANR Sourcex agricultural products export-grade?",
+      a: "Yes. All our products undergo rigorous grading, sorting, moisture inspection, and quality verification to meet both domestic quality standards and international export requirements.",
+    },
+  ];
+
+  return (
+    <section id="faq-section" className="faq-section" aria-label="Frequently Asked Questions">
+      <div className="faq-container">
+        <div className="faq-header">
+          <span className="faq-tag">FREQUENTLY ASKED QUESTIONS</span>
+          <h2>Everything you need to know about <i>sourcing with us</i></h2>
+          <p>Clear, direct answers for wholesale buyers, businesses, and procurement managers.</p>
+        </div>
+
+        <div className="faq-accordion">
+          {faqs.map((faq, idx) => {
+            const isOpen = openIdx === idx;
+            return (
+              <div
+                key={idx}
+                className={`faq-item ${isOpen ? 'active' : ''}`}
+                onClick={() => setOpenIdx(isOpen ? null : idx)}
+              >
+                <button
+                  className="faq-question"
+                  aria-expanded={isOpen}
+                  type="button"
+                >
+                  <span>{faq.q}</span>
+                  <span className="faq-icon">{isOpen ? '−' : '+'}</span>
+                </button>
+                {isOpen && (
+                  <div className="faq-answer">
+                    <p>{faq.a}</p>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
