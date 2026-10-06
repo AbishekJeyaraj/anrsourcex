@@ -622,14 +622,14 @@ export function ChatBot() {
     {
       id: 1,
       sender: "bot",
-      text: "👋 **Hello! Welcome to ANR Sourcex.**\n\nI am your 24/7 sourcing assistant. Whether you need wholesale quotes for rice, fresh gooseberry, spices, or nuts, I'm here to help.",
+      text: "👋 **Welcome to ANR Sourcex Procurement Desk.**\n\nI am your verified 24/7 sourcing specialist. Whether you require wholesale commodities, export specifications, or instant quotes across our 150+ verified farm network, I am ready to assist.",
       time: "Just now",
       actions: [
         { label: "🌾 Rice Varieties", query: "Tell me about Rice varieties" },
         { label: "🍋 Fresh Gooseberry", query: "Details on Fresh Gooseberry" },
         { label: "🌶️ Premium Spices", query: "What spices do you supply?" },
         { label: "📦 Get Bulk Quote", query: "How do I get a bulk quote?" },
-        { label: "🚚 Shipping & Delivery", query: "Where do you deliver?" },
+        { label: "🚚 Shipping & Reach", query: "Where do you deliver?" },
         { label: "💬 Chat on WhatsApp", url: "https://wa.me/918825453262?text=Hello%20ANR%20Sourcex%2C%20I%20have%20an%20inquiry%20regarding%20bulk%20produce%20sourcing." }
       ]
     }
@@ -816,12 +816,25 @@ export function ChatBot() {
     <div className="chatbot-root" aria-label="ANR Sourcex Virtual Assistant">
       {/* Floating Prompt Tooltip */}
       {showTooltip && !isOpen && (
-        <div className="chatbot-tooltip">
-          <div className="tooltip-text">
-            <strong>Need produce or bulk rates?</strong>
-            <span>Chat with our sourcing assistant 👋</span>
+        <div className="chatbot-tooltip" onClick={toggleChat}>
+          <div className="tooltip-live-badge">
+            <span className="tooltip-ping"></span>
+            <span className="tooltip-core"></span>
           </div>
-          <button className="tooltip-close" onClick={() => setShowTooltip(false)} aria-label="Dismiss message">✕</button>
+          <div className="tooltip-text">
+            <strong>Wholesale Procurement Desk</strong>
+            <span>Need bulk rates or farm produce? Chat with us 👋</span>
+          </div>
+          <button 
+            className="tooltip-close" 
+            onClick={(e) => { 
+              e.stopPropagation(); 
+              setShowTooltip(false); 
+            }} 
+            aria-label="Dismiss message"
+          >
+            ✕
+          </button>
         </div>
       )}
 
